@@ -20,6 +20,28 @@ Import-Module -Name oh-my-posh
 #Set-PoshPrompt -Theme powerlevel10k_classic
 Set-PoshPrompt -Theme ~\.my_posh_theme_pure.json
 
+
+#Start AWS
+#Import-Module AWSPowerShell.NetCore
+
+#Change AWS PowerShell to use Cli creds
+
+#
+function Set-AWSRegionAndCredVariables
+{
+    $global:StoredAWSRegion = $env:AWS_REGION
+
+    # TODO read config (reliably) from config files
+    # ala https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/src/segment_aws.go
+    #if (!($global:StoredAWSRegion)) {
+    #   $global:StoredAWSRegion = Invoke-Expression "aws configure get region"
+    #}
+
+    $global:StoredAWSCredentials = $env:AWS_PROFILE
+    Write-Host "Region: $global:StoredAWSRegion Creds: $global:StoredAWSCredentials"
+}
+New-Alias -Name 'Set-PoshContext' -Value 'Set-AWSRegionAndCredVariables' -Scope Global
+
 # Confgirue PSReadLine Colors
 # https://docs.microsoft.com/en-us/powershell/module/psreadline/set-psreadlineoption?view=powershell-7.1
 Set-PSReadLineOption -Colors @{ "Parameter"="`e[32m" }
@@ -46,5 +68,3 @@ Set-PSReadLineOption -PredictionViewStyle ListView
 #Set-PSReadLineKeyHandler -Key 'Ctrl+z' -Function Undo
 #Set-PSReadLineOption -HistorySearchCursorMovesToEnd
 
-#Start AWS
-#Import-Module AWSPowerShell.NetCore
