@@ -16,7 +16,7 @@
         },
         {
           "type":"text",
-          "foreground": "#6C6C6C",
+         
           "style": "plain",
           "template": "{{.UserName}}"
         },
@@ -45,22 +45,21 @@
         },
         {
           "type":"text",
-          "foreground": "#6C6C6C",
           "style": "plain",
-          "template": "{{.HostName}} "
-        },
-        {
-          "type": "time",
-          "style": "plain",
-          "foreground": "lightGreen",
-          "template": "{{ .CurrentDate | date .Format }}"
+          "template": "{{.HostName}}"
         },
         {
           "type":"text",
           "foreground": "#6C6C6C",
           "style": "plain",
           "template": "]"
-        }
+        },
+        {
+          "type": "time",
+          "style": "plain",
+          "foreground": "lightGreen",
+          "template": " {{ .CurrentDate | date .Format }}"
+        }       
       ],
       "horizontal_offset": -100
     },
@@ -89,15 +88,15 @@
           "type": "git",
           "style": "plain",
           "foreground": "#D4AAFC",
-          "template": "{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}<#FFAFD7>*</>{{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }} ",
           "properties": {
-            "branch_ahead_icon": "<#88C0D0>\u21e1 </>",
-            "branch_behind_icon": "<#88C0D0>\u21e3 </>",
+            "branch_ahead_icon": "\u003c#88C0D0\u003e⇡ \u003c/\u003e",
+            "branch_behind_icon": "\u003c#88C0D0\u003e⇣ \u003c/\u003e",
             "branch_icon": "",
             "fetch_stash_count": true,
             "fetch_status": true,
             "fetch_upstream_icon": true,
-            "github_icon": ""
+            "github_icon": "",
+            "local_working_icon": "\u003c#FFAFD7\u003e*\u003c/\u003e"
           }
         }
       ]
